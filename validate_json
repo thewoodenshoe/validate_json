@@ -1,0 +1,35 @@
+import json
+from operator import truediv
+import sys
+from logging import exception
+from tabnanny import check
+
+def check_arguments():
+   if (len(sys.argv) != 2):
+      print('Add a filename as input. Stopping..')
+      sys.exit(1)
+
+def open_file(filename):
+   try:
+      f = open(filename, 'r')
+      return f
+   except Exception as e:
+      print(e)
+      sys.exit(1)
+
+def check_if_json(file):
+   try:
+      data = json.load(filename)
+      print('')
+      print('VALID JSON. Assignment date:', data['assignment_date'],'. List of files:',len(data['list_of_files']))
+      print('')
+   except Exception as e:
+      print('')
+      print('INVALID JSON! check your syntax')
+      print(e)
+      print('')  
+
+check_arguments()
+filename = open_file(sys.argv[1])
+check_if_json(filename)
+filename.close()
